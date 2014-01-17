@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  SM_ID: MyString
+  Voltage_V: 9.99
+  Current_A: 9.99
+  Power_W: 9.99
+  Energy_kWH: 9.99
+
+two:
+  SM_ID: MyString
+  Voltage_V: 9.99
+  Current_A: 9.99
+  Power_W: 9.99
+  Energy_kWH: 9.99
