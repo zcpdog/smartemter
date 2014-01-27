@@ -1,8 +1,11 @@
 Smartmeter::Application.routes.draw do
-  resources :meters
-  resources :meter_records
-  resources :products do
-    resources :meter_records
+  resources :meters do
+    resources :meter_records do
+      collection do
+        get 'monitor'
+        get 'summary'
+      end
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

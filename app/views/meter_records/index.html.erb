@@ -1,0 +1,173 @@
+<script type="text/javascript">
+	var chart,chart_c,chart_p;
+    $(document).ready(function() {
+		chart = new Highcharts.Chart({
+		        chart: {
+		            renderTo: 'voltage',
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+	                marginRight: 10,
+		            events: {
+		                load: requestData
+		            }
+		        },
+	            title: {
+	                text: 'Smart Meter <%=@meter.id%> - Voltage'
+	            },
+	            xAxis: {
+	                type: 'datetime',
+	                tickPixelInterval: 150
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Voltage'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+	            },
+	            tooltip: {
+	                formatter: function() {
+	                        return '<b>'+ this.series.name +'</b><br/>'+
+	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+	                        Highcharts.numberFormat(this.y, 2);
+	                }
+	            },
+	            legend: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+		        series: [{
+		            name: 'Smart Meter Records',
+		            data: []
+		        }]
+		 	});
+			
+		chart_c = new Highcharts.Chart({
+		        chart: {
+		            renderTo: 'current',
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+	                marginRight: 10,
+		            events: {
+		                load: function(){}
+		            }
+		        },
+	            title: {
+	                text: 'Smart Meter <%=@meter.id%> - Current'
+	            },
+	            xAxis: {
+	                type: 'datetime',
+	                tickPixelInterval: 150
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Current'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+	            },
+	            tooltip: {
+	                formatter: function() {
+	                        return '<b>'+ this.series.name +'</b><br/>'+
+	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+	                        Highcharts.numberFormat(this.y, 2);
+	                }
+	            },
+	            legend: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+		        series: [{
+		            name: 'Smart Meter Records',
+		            data: []
+		        }]
+		 	});
+				
+		chart_p = new Highcharts.Chart({
+		        chart: {
+		            renderTo: 'power',
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+	                marginRight: 10,
+		            events: {
+		                load: function(){}
+		            }
+		        },
+	            title: {
+	                text: 'Smart Meter <%=@meter.id%> - Power'
+	            },
+	            xAxis: {
+	                type: 'datetime',
+	                tickPixelInterval: 150
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Power'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+	            },
+	            tooltip: {
+	                formatter: function() {
+	                        return '<b>'+ this.series.name +'</b><br/>'+
+	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+	                        Highcharts.numberFormat(this.y, 2);
+	                }
+	            },
+	            legend: {
+	                enabled: false
+	            },
+	            exporting: {
+	                enabled: false
+	            },
+		        series: [{
+		            name: 'Smart Meter Records',
+		            data: []
+		        }]
+		 	});
+		$("tspan").hide();
+    });
+	
+function requestData() {
+    $.ajax({
+		url: "<%=monitor_meter_meter_records_path(@meter)%>",
+		type: "GET",
+		dataType: "json",
+        success: function(data) {
+			if(data != undefined){
+				var series = chart.series[0],
+				    shift = series.data.length > 20;
+				var record = data.meter_record;
+                var x = new Date(record.created_at), 
+                    v = record.Voltage_V,
+					c = record.Current_A,
+					p = record.Power_W;
+				chart.series[0].addPoint([(new Date()).getTime(), eval(v)], true, shift);
+				chart_c.series[0].addPoint([(new Date()).getTime(), eval(c)], true, shift);
+				chart_p.series[0].addPoint([(new Date()).getTime(), eval(p)], true, shift);
+			}
+            setTimeout(requestData, 1000);    
+        },
+        cache: false
+    });
+}
+</script>
+<%=render "commons/selector"%>
+<div id="voltage" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<br>
+<div id="current" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<br>
+<div id="power" style="width: 800px; height: 400px; margin: 0 auto"></div>

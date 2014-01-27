@@ -1,0 +1,41 @@
+Please select a meter:<%=select  "meter","id",Meter.all.collect {|p| [ p.id, p.id ] },{ :include_blank => true }%>
+<br>
+Please select what you want to show:<%=select_tag "what_to_show", options_for_select([ "Real Time Data", "Summary" ])%>
+<br>
+<div class="date_range">
+	Choose a date range <%=text_field_tag 'begin_at',nil,class: :datepicker%> - <%=text_field_tag 'end_at',nil, class: :datepicker%>
+</div>
+<%=button_tag "Show", class: "show_button"%>
+<script type="text/javascript">
+	$(function(){
+		$( ".datepicker" ).datepicker();
+		$( ".date_range" ).hide();
+		$("select#meter_id").change(function(){
+			if($("select#what_to_show").val()!="Summary"){
+				var meter_id = $(this).find( "option:selected" ).val();
+				if(meter_id>=1){
+					window.location.href = "/meters/"+meter_id+"/meter_records";
+				}else{
+					window.location.href = "/meters";
+				}
+			}
+		});
+		
+		$("select#what_to_show").change(function(){
+			if($("select#what_to_show").val()=="Summary"){
+				$(".date_range").show();
+			}else{
+				$(".date_range").hide();
+			}
+		});
+		
+		// $(".show_button").click(function{
+// 			var meter_id = $(this).find( "option:selected" ).val();
+// 			var show_type = $("#what_to_show").find( "option:selected" ).val();
+// 			if(meter_id&&show_type == "Summary"){
+// 				window.location.href = "/meters/"+meter_id+"/meter_records";
+// 			}
+		//});
+		
+	});
+</script>
