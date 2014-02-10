@@ -37,7 +37,7 @@ module MeterRecordsHelper
       end
       if flage
         current+=(mr.Energy_kWH-low)
-        data.push current
+        data.push (data.last+current)
       else
         data.push mr.Energy_kWH
       end
