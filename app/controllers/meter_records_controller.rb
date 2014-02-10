@@ -10,7 +10,6 @@ class MeterRecordsController < ApplicationController
   def monitor
     @meter = Meter.find(params[:meter_id])
     @meter_record = MeterRecord.produced_by(@meter).last
-    @emter_record.is_read = true;
     render json: @meter_record
   end
   
