@@ -22,9 +22,9 @@ Please select what you want to show:<%=select_tag "what_to_show", options_for_se
 		});
 		$("select#what_to_show").change(function(){
 			if($("select#what_to_show").val()=="Summary"){
-				$(".date_range").show();
+				//$(".date_range").show();
 			}else{
-				$(".date_range").hide();
+				//$(".date_range").hide();
 				var meter_id = $("select#meter_id").find( "option:selected" ).val();
 				window.location.href = "/meters/"+meter_id+"/meter_records";
 			}
@@ -32,7 +32,11 @@ Please select what you want to show:<%=select_tag "what_to_show", options_for_se
 		$(".show_button").click(function(){
 			var meter_id = $("select#meter_id").find( "option:selected" ).val();
 			if(meter_id>=1){
-				window.location.href = "/meters/"+meter_id+"/meter_records/summary";
+				if($("select#what_to_show").val()=="Summary"){
+					window.location.href = "/meters/"+meter_id+"/meter_records/summary"
+				}else{
+					window.location.href = "/meters/"+meter_id+"/meter_records";
+				}
 			}else{
 				alert("Please select a meter");
 			}

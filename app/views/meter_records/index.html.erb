@@ -43,7 +43,7 @@
 	            },
 		        series: [{
 		            name: 'Smart Meter Records',
-		            data: [<%=init_data("Voltage_V")%>]
+		            data: []
 		        }]
 		 	});
 			
@@ -89,7 +89,7 @@
 	            },
 		        series: [{
 		            name: 'Smart Meter Records',
-		            data: [<%=init_data("Current_A")%>]
+		            data: []
 		        }]
 		 	});
 				
@@ -135,10 +135,9 @@
 	            },
 		        series: [{
 		            name: 'Smart Meter Records',
-		            data: [<%=init_data("Power_W")%>]
+		            data: []
 		        }]
 		 	});
-		$("tspan").hide();
     });
 	
 function requestData() {
