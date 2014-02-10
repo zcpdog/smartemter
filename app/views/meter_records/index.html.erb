@@ -158,7 +158,7 @@ function requestData() {
 				chart_c.series[0].addPoint([(new Date()).getTime(), eval(c)], true, shift);
 				chart_p.series[0].addPoint([(new Date()).getTime(), eval(p)], true, shift);
 			}
-            setTimeout(requestData, 1000);    
+            setTimeout(requestData, 8000);    
         },
         cache: false
     });
