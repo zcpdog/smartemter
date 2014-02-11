@@ -23,24 +23,18 @@ module MeterRecordsHelper
   end
   
   def show_summary_temp(mrs)
-    current = 0
-    flage = false
     data = Array.new
-    max = 0
-    low = 0;
+    current = 0
+    pre =0
     mrs.each do |mr|
-      if mr.Energy_kWH>max
-        max = mr.Energy_kWH
+      cu = mr.Energy_kWH
+      if(cu<pre) 
+        current = cu
       else
-        low = mr.Energy_kWH
-        flage = true
+        current = cu-pre
       end
-      if flage
-        current+=(mr.Energy_kWH-low)
-        data.push (data.last+current)
-      else
-        data.push mr.Energy_kWH
-      end
+      pre = mr.Energy_kWH
+      data.push ((data.last||0)+current)
     end
     "[#{data.join(',')}]"
   end
