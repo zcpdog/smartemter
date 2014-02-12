@@ -34,7 +34,7 @@ module MeterRecordsHelper
         current = cu-pre
       end
       pre = mr.Energy_kWH
-      data.push (data.last||0)+(current*1.0/60000).round(6)
+      data.push (data.last||0)+(current*1.0/3600000).round(8)
     end
     "[#{data.join(',')}]"
   end
