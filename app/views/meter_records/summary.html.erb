@@ -116,7 +116,7 @@ $(function () {
             
             xAxis: {
                 type: 'datetime',
-                maxZoom: 30000, // fourteen days
+                maxZoom: 80000, // fourteen days
                 title: {
                     text: null
                 }
@@ -158,7 +158,7 @@ $(function () {
             series: [{
                 type: 'area',
                 name: 'Energy used(KWH)',
-                pointInterval: 3 * 1000,
+                pointInterval: 8 * 1000,
                 pointStart: Date.UTC(2014,01,08),
                 data: <%=show_summary_temp @meter_records%>
             }]
