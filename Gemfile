@@ -36,6 +36,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem "capistrano", "~> 2.15.5", group: :development
+gem "rvm-capistrano", "~>1.4.4"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
