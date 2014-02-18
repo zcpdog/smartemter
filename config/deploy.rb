@@ -44,7 +44,7 @@ namespace :deploy do
   end
   
   task :restart do
-    sudo "/etc/init.d/nginx restart"
+    sudo "/opt/nginx/sbin/nginx -s reload"
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   
