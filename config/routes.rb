@@ -7,6 +7,9 @@ Smartmeter::Application.routes.draw do
       end
     end
   end
+  post "api/upload" => "api#upload" 
+  get "api/new" => "api#new" 
+  get "api/show" => "api#show" 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
