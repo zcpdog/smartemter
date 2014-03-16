@@ -4,10 +4,8 @@ class ApiController < ApplicationController
   end
   
   def upload
-    uploaded_io = params[:filePath]
-    File.new(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
+    @audio = Audio.new(asset: params[:filePath])
+    @audio.save
     render :show
   end
   

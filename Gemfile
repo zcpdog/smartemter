@@ -44,6 +44,8 @@ group :development do
   gem "net-ssh", "~> 2.7.0"
 end
 
+gem "paperclip", "~> 4.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
