@@ -18,6 +18,7 @@ class MeterRecordsController < ApplicationController
     @meter_records = MeterRecord.produced_by(@meter);
     respond_to do |format|
       format.html
+      format.json {render @meter_records}
     end
   end
 end
