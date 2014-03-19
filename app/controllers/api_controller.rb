@@ -6,6 +6,12 @@ class ApiController < ApplicationController
   def upload
     @audio = Audio.new(asset: params[:filePath])
     @audio.save
+    data_file = "/ASR/demo/ror.scp"
+    file = File.open(File.expand_path(data_file), 'w')
+    file.write("#{@audio.asset_file_name} sox #{@audio.asset.path} -t wav -r 8000 - |")
+    file.close
+    cmd = %x[/ASR/demo/DO.ror]
+    @words = %x[cat #{@audio.asset_file_name}.lab]
     render :show
   end
   
