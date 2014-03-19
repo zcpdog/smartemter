@@ -1,1 +1,29 @@
-<%=render "commons/selector"%>
+<div style="width: 800px;margin: 0 auto">
+<h1>Smatmeter List</h1>
+<hr>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>IEEE Address</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+	<tbody>
+		<%@meters.each do |meter|%>
+	        <tr>
+	            <td><%=meter.id%></td>
+	            <td><%=meter.meter_mac%></td>
+	            <td>Normal</td>
+	            <td>
+					<%=link_to "REAL DATA", meter_meter_records_path(meter)%> |
+					<%=link_to "SUMMARY", summary_meter_path(meter)%> |
+					<%=link_to "STATUS", status_meter_path(meter)%>|
+					<%=link_to "GIAGONOSTIC", giagonostic_meter_path(meter)%>
+				</td>
+	        </tr>
+		<%end%>
+    </tbody>
+</table>
+</div>

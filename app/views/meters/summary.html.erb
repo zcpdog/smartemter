@@ -166,7 +166,7 @@ $(function () {
     });
 });
 </script>
-<div class="date-table" data-method="summary",data-id = "<%=@meter.id%>">
+<div class="data-table" data-method="summary" data-id="<%=@meter.id%>"></div>
 <div style="width: 800px; margin: 0 auto">
 	<%=link_to "Home", root_path%> | <%=link_to "Back", :back%><br>
 	<%=render "commons/date_selector"%>

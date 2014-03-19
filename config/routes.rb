@@ -1,5 +1,10 @@
 Smartmeter::Application.routes.draw do
   resources :meters do
+    member do
+      get 'status'
+      get 'giagonostic'
+      get 'summary'
+    end
     resources :meter_records do
       collection do
         get 'monitor'
