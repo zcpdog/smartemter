@@ -14,7 +14,6 @@ class ApiController < ApplicationController
     begin
       output_file = File.open("/ASR/demo/#{@audio.asset_file_name}.lab")
       @words = output_file.read
-      output_file.close
     rescue 
       
     ensure
