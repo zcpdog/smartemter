@@ -1,4 +1,5 @@
 class ApiController < ApplicationController
+  layout nil
   skip_before_filter :verify_authenticity_token, :only => [:upload]
   def new
   end
