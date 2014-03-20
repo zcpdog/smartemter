@@ -42,11 +42,11 @@ group :development do
   gem "quiet_assets", "~> 1.0.2"
   gem "capistrano", "~> 2.15.5"
   gem "net-ssh", "~> 2.7.0"
+  gem 'sunspot_solr'
 end
 
 gem "paperclip", "~> 4.1"
 gem 'sunspot_rails'
-gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
