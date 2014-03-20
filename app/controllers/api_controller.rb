@@ -10,10 +10,17 @@ class ApiController < ApplicationController
     file = File.open(File.expand_path(data_file), 'w')
     file.write("#{@audio.asset_file_name} sox #{@audio.asset.path} -t wav -r 8000 - |")
     file.close
-    log.info %x[/ASR/demo/DO.ror]
-    output_file = File.open("/ASR/demo/#{@audio.asset_file_name}.lab")
-    @words = output_file.read
-    output_file.close
+    %x[/ASR/demo/DO.ror]
+    begin
+      output_file = File.open("/ASR/demo/#{@audio.asset_file_name}.lab")
+      @words = output_file.read
+      output_file.close
+    rescue 
+      
+    ensure
+      output_file.close unless output_file.nil?
+    end
+    
     render :show
   end
   
