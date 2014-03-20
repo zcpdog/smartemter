@@ -12,7 +12,7 @@ class ApiController < ApplicationController
     file.close
     %x[/ASR/demo/DO.ror]
     begin
-      output_file = File.open("#{@audio.asset_file_name}.hyp")
+      output_file = File.open("#{@audio.asset_file_name}.wav.hyp")
       @words = output_file.read
     rescue 
       
