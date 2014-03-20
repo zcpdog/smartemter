@@ -1,5 +1,4 @@
 class ApiController < ApplicationController
-  layout nil
   skip_before_filter :verify_authenticity_token, :only => [:upload]
   def new
   end
@@ -23,7 +22,9 @@ class ApiController < ApplicationController
       output_file.close unless output_file.nil?
     end
     
-    render :show
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
   end
   
   def show
