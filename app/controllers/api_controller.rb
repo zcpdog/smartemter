@@ -12,7 +12,7 @@ class ApiController < ApplicationController
       file.write("#{@audio.asset_file_name} sox #{@audio.asset.path} -t wav -r 8000 - |")
       %x[/ASR/demo/DO.ror]
     rescue Exception => e
-      puts "#{e.inspect}"
+      logger.info "#{e.inspect}"
     ensure
       file.close unless file.nil?
     end
@@ -28,7 +28,7 @@ class ApiController < ApplicationController
       end
       @sentences = @search.results
     rescue Exception => e
-      puts "#{e.inspect}"
+      logger.info "#{e.inspect}"
     ensure
       output_file.close unless output_file.nil?
     end
