@@ -14,7 +14,7 @@ class ApiController < ApplicationController
     begin
       output_file = File.open("#{@audio.asset_file_name}.lab")
       @words = output_file.read
-      @words.gsub!(/\s+/,"")
+      @words.gsub!(/\s+/," ")
       @words.gsub!(/\d+/,"")
     rescue Exception => e
       puts "#{e.inspect}"
