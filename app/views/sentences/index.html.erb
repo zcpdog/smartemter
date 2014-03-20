@@ -1,0 +1,10 @@
+<%= form_tag("/search", method: "get", class: "search_form") do %>
+  <%= text_field_tag :q, nil, autocomplete: "off", placeholder: "搜索关键字"%>
+  <button type="submit">搜索</button>
+<% end %>
+<hr>
+<%if @sentences.present?%>
+<%@sentences.each do |sentence|%>
+	<p><%="#{sentence.name}-#{sentence.chapter}-#{sentence.verse}"%></p>
+<%end%>
+<%end%>

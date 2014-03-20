@@ -12,9 +12,15 @@ Smartmeter::Application.routes.draw do
       end
     end
   end
+  resources :sentences do
+    collection do
+      get 'search'
+    end
+  end
   post "api/upload" => "api#upload" 
   get "api/new" => "api#new" 
   get "api/show" => "api#show" 
+  get "search"  => "sentences#search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

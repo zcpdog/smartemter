@@ -1,0 +1,19 @@
+production:
+ solr:
+  hostname: localhost
+  port: 8080
+  log_level: WARNING
+  path: /solr
+
+development:
+ solr:
+  hostname: 23.253.41.149
+  port: 8080
+  log_level: INFO
+  path: /solr
+
+test:
+ solr:
+  hostname: localhost
+  port: 8981
+  log_level: WARNING

@@ -45,6 +45,8 @@ group :development do
 end
 
 gem "paperclip", "~> 4.1"
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
