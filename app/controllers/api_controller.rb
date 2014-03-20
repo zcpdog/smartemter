@@ -12,8 +12,10 @@ class ApiController < ApplicationController
     file.close
     %x[/ASR/demo/DO.ror]
     begin
-      output_file = File.open("/ASR/demo/#{@audio.asset_file_name}.hyp")
+      output_file = File.open("#{@audio.asset_file_name}.lab")
       @words = output_file.read
+      @words.gsub!(/\s+/,"")
+      @words.gsub!(/\d+/,"")
     rescue Exception => e
       puts "#{e.inspect}"
     ensure
