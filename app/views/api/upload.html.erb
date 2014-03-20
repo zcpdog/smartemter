@@ -1,1 +1,5 @@
-<%=@words%>
+<%if @sentences.present?%>
+<%@sentences.each do |sentence|%>
+	<%="#{sentence.name}-#{sentence.chapter}-#{sentence.verse}"%>
+<%end%>
+<%end%>

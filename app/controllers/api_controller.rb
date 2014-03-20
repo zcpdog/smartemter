@@ -16,6 +16,10 @@ class ApiController < ApplicationController
       @words = output_file.read
       @words.gsub!(/\s+/," ")
       @words.gsub!(/\d+/,"")
+      @search = Sunspot.search(Sentence) do
+        fulltext @words
+      end
+      @sentences = @search.results
     rescue Exception => e
       puts "#{e.inspect}"
     ensure
