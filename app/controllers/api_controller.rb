@@ -13,9 +13,7 @@ class ApiController < ApplicationController
     file.close
     %x[/ASR/demo/DO.ror]
     begin
-      Encoding.default_external = Encoding::UTF_8
-      Encoding.default_internal = Encoding::UTF_8
-      output_file = File.open("#{@audio.asset_file_name}.lab")
+      output_file = File.open("#{@audio.asset_file_name}.lab","r:UTF-8")
       @words = output_file.read
       @words.gsub!(/\s+/," ")
       @words.gsub!(/\d+/,"")
