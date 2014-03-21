@@ -23,8 +23,10 @@ class ApiController < ApplicationController
       @words.gsub!(/\s+/," ")
       @words.gsub!(/\d+/,"")
       logger.info "=============#{@words}==========="
+      keyword = @words.gsub(/\s+/,"")
+      logger.info "=============#{keyword}=============="
       @search = Sunspot.search(Sentence) do
-        fulltext @words.gsub(/\s+/,"")
+        fulltext keyword
       end
       @sentences = @search.results
     rescue Exception => e
