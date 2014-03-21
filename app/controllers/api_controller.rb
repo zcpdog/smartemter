@@ -10,12 +10,12 @@ class ApiController < ApplicationController
       data_file = "/ASR/demo/ror.scp"
       file = File.open(File.expand_path(data_file), 'w')
       file.write("#{@audio.asset_file_name} sox #{@audio.asset.path} -t wav -r 8000 - |")
-      %x[/ASR/demo/DO.ror]
     rescue Exception => e
       logger.info "#{e.inspect}"
     ensure
       file.close unless file.nil?
     end
+    %x[/ASR/demo/DO.ror]
     begin
       output_file = File.open("#{@audio.asset_file_name}.lab","r:UTF-8")
       @words = output_file.read
