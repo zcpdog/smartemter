@@ -2,9 +2,9 @@ class MeterRecordsController < ApplicationController
   def index
     @meter = Meter.find(params[:meter_id])
     @meter_records = MeterRecord.produced_by(@meter).recent
-    respond_to do |format|
-      format.html
-    end
+    # respond_to do |format|
+#       format.html
+#     end
   end
   
   def monitor
